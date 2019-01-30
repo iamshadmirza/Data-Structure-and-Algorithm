@@ -16,42 +16,34 @@
 //     [10,  9,  8, 7]]
 
 function matrix(n) {
-    const resullt = [];
+    const result = [];
     for (let i = 0; i < n; i++) {
-        resullt.push([]);
+        result.push([]);
     }
     let counter = 1;
     let startRow = 0;
-    let startColumn = 0;
     let endRow = n - 1;
+    let startColumn = 0;
     let endColumn = n - 1;
-    while (startColumn <= endColumn && startRow <= endRow) {
-        // top row
-        for (let i = startRow; i <= endColumn; i++) {
-            resullt[startRow][i] = counter;
-            counter++;
+    while (startRow <= endRow && startColumn <= endColumn) {
+        for (let i = startColumn; i <= endColumn; i++) {
+            result[startRow][i] = counter++;
         }
         startRow++;
-        //right most column
         for (let i = startRow; i <= endRow; i++) {
-            resullt[i][endColumn] = counter;
-            counter++;
+            result[i][endColumn] = counter++;
         }
         endColumn--;
-        //bottom most row
         for (let i = endColumn; i >= startColumn; i--) {
-            resullt[endRow][i] = counter;
-            counter++;
+            result[endRow][i] = counter++;
         }
         endRow--;
-        //start column
         for (let i = endRow; i >= startRow; i--) {
-            resullt[i][startColumn] = counter;
-            counter++;
+            result[i][startColumn] = counter++;
         }
         startColumn++;
     }
-    return resullt;
+    return result;
 }
 
 module.exports = matrix;
