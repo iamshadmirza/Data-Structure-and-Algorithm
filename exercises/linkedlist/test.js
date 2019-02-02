@@ -28,7 +28,7 @@ describe('Insert First', () => {
   });
 });
 
-describe.skip('Size', () => {
+describe('Size', () => {
   test('returns the number of items in the linked list', () => {
     const l = new List();
     expect(l.size()).toEqual(0);
@@ -40,7 +40,7 @@ describe.skip('Size', () => {
   });
 });
 
-describe.skip('GetFirst', () => {
+describe('GetFirst', () => {
   test('returns the first element', () => {
     const l = new List();
     l.insertFirst(1);
@@ -50,7 +50,7 @@ describe.skip('GetFirst', () => {
   });
 });
 
-describe.skip('GetLast', () => {
+describe('GetLast', () => {
   test('returns the last element', () => {
     const l = new List();
     l.insertFirst(2);
@@ -60,7 +60,7 @@ describe.skip('GetLast', () => {
   });
 });
 
-describe.skip('Clear', () => {
+describe('Clear', () => {
   test('empties out the list', () => {
     const l = new List();
     expect(l.size()).toEqual(0);
