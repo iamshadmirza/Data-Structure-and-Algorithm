@@ -29,6 +29,7 @@ class LinkedList {
         return this.head;
     }
     getLast() {
+        if (!this.head) { return null }
         let i = this.head;
         while (i.next) {
             i = i.next;
@@ -38,6 +39,23 @@ class LinkedList {
     clear() {
         this.head = null;
     }
+    removeFirst() {
+        if (this.head) {
+            this.head = this.head.next;
+        }
+    }
+    removeLast() {
+        if (!this.head) { return; }
+        if (!this.head.next) { return this.head = null }
+        let previous = this.head;
+        let node = this.head.next;
+        while (node.next) {
+            previous = node;
+            node = node.next;
+        }
+        previous.next = null;
+    }
+
 }
 
 module.exports = { Node, LinkedList };
