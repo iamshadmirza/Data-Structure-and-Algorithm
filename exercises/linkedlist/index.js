@@ -26,15 +26,17 @@ class LinkedList {
         return count;
     }
     getFirst() {
-        return this.head;
+        //return this.head;
+        return this.getAt(0);
     }
     getLast() {
-        if (!this.head) { return null }
-        let i = this.head;
-        while (i.next) {
-            i = i.next;
-        }
-        return i;
+        // if (!this.head) { return null }
+        // let i = this.head;
+        // while (i.next) {
+        //     i = i.next;
+        // }
+        // return i;
+        return this.getAt(this.size() - 1);
     }
     clear() {
         this.head = null;
@@ -92,7 +94,13 @@ class LinkedList {
         const previous = this.getAt(index - 1);
         if (!previous || !previous.next) { return; }
         previous.next = previous.next.next;
-
+    }
+    insertAt(data, index) {
+        if (!this.head) { return this.head = new Node(data); }
+        if (index === 0) { return this.head = new Node(data, this.head); }
+        const previous = this.getAt(index - 1) || this.getLast();
+        const newNode = new Node(data, previous.next);
+        previous.next = newNode;
     }
 }
 
