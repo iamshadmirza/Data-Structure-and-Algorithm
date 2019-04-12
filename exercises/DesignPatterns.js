@@ -96,6 +96,7 @@ function run() {
 // The prototype object holds the default values that are 
 // copied over into a newly created business object.
 // https://www.dofactory.com/javascript/prototype-design-pattern
+
 function CustomerPrototype(proto) {
     this.proto = proto;
 
@@ -131,3 +132,57 @@ function run() {
     customer.say();
 }
 
+//Facade Pattern
+//The Façade pattern provides an 
+// interface which shields clients from complex 
+// functionality in one or more subsystems.
+// https://www.dofactory.com/javascript/facade-design-pattern
+
+var Mortgage = function (name) {
+    this.name = name;
+}
+
+Mortgage.prototype = {
+
+    applyFor: function (amount) {
+        // access multiple subsystems...
+        var result = "approved";
+        if (!new Bank().verify(this.name, amount)) {
+            result = "denied";
+        } else if (!new Credit().get(this.name)) {
+            result = "denied";
+        } else if (!new Background().check(this.name)) {
+            result = "denied";
+        }
+        return this.name + " has been " + result +
+            " for a " + amount + " mortgage";
+    }
+}
+
+var Bank = function () {
+    this.verify = function (name, amount) {
+        // complex logic ...
+        return true;
+    }
+}
+
+var Credit = function () {
+    this.get = function (name) {
+        // complex logic ...
+        return true;
+    }
+}
+
+var Background = function () {
+    this.check = function (name) {
+        // complex logic ...
+        return true;
+    }
+}
+
+function run() {
+    var mortgage = new Mortgage("Joan Templeton");
+    var result = mortgage.applyFor("$100,000");
+
+    alert(result);
+}
