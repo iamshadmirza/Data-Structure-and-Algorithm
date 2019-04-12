@@ -22,6 +22,8 @@ function run() {
 }
 
 //Factory Pattern 
+//Creates an instance of several derived classes
+// https://www.dofactory.com/javascript/design-patterns
 function Factory() {
     this.createEmployee = function (type) {
         var employee;
@@ -86,5 +88,46 @@ function run() {
     }
 
     log.show();
+}
+
+//Prototype Pattern
+// An example of where the Prototype pattern is useful is the initialization \
+// of business objects with values that match the default values in the database.
+// The prototype object holds the default values that are 
+// copied over into a newly created business object.
+// https://www.dofactory.com/javascript/prototype-design-pattern
+function CustomerPrototype(proto) {
+    this.proto = proto;
+
+    this.clone = function () {
+        var customer = new Customer();
+
+        customer.first = proto.first;
+        customer.last = proto.last;
+        customer.status = proto.status;
+
+        return customer;
+    };
+}
+
+function Customer(first, last, status) {
+
+    this.first = first;
+    this.last = last;
+    this.status = status;
+
+    this.say = function () {
+        alert("name: " + this.first + " " + this.last +
+            ", status: " + this.status);
+    };
+}
+
+function run() {
+
+    var proto = new Customer("n/a", "n/a", "pending");
+    var prototype = new CustomerPrototype(proto);
+
+    var customer = prototype.clone();
+    customer.say();
 }
 
